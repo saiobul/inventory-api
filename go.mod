@@ -1,6 +1,8 @@
 module inventory-api
 
-go 1.24.2
+go 1.23.0
+
+toolchain go1.24.2
 
 require (
 	github.com/DATA-DOG/go-sqlmock v1.5.2
