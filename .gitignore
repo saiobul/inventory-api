@@ -1,0 +1,47 @@
+# Binaries
+/bin/
+/build/
+/dist/
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Go workspace
+*.test
+*.out
+*.log
+
+# Dependency directories
+vendor/
+
+# Go modules
+go.sum
+
+# IDE/editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Docker
+*.env
+docker-compose.override.yml
+
+# AWS credentials (never commit these!)
+.aws/
+*.pem
+
+# Logs
+*.log
+
+# Coverage reports
+coverage.out
+
+# CI/CD
+.github/secrets.yml
