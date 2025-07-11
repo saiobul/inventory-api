@@ -10,7 +10,7 @@
 
 # Go workspace
 *.test
-*.out
+#*.out
 *.log
 
 # Dependency directories
