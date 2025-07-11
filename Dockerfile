@@ -1,19 +1,20 @@
-# Use official Golang image
-FROM golang:1.23
+# Use a minimal base image
+FROM alpine:latest
+
+# Install certificates (needed for HTTPS calls)
+RUN apk --no-cache add ca-certificates
 
 # Set working directory
 WORKDIR /app
 
-# Copy go.mod and go.sum first to leverage Docker cache
-COPY go.mod go.sum ./
-RUN go mod download
+# Copy your prebuilt Go binary into the container
+COPY inventory-api .
 
-# Copy the rest of the source code
-COPY . .
+# Make sure it's executable
+RUN chmod +x inventory-api
 
-# Build and run the app
-RUN go build -o app ./cmd/server
-
+# Expose the port your app listens on
 EXPOSE 8080
 
-CMD ["./app"]
+# Run the binary
+CMD ["./inventory-api"]
