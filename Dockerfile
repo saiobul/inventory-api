@@ -8,20 +8,18 @@ RUN go mod download
 
 COPY . .
 
+# ✅ Static build for Alpine
+ENV CGO_ENABLED=0
 RUN go build -o inventory-api ./cmd/server
-RUN ls -l /app/inventory-api  # ✅ Debug: confirm binary exists
 
-# Stage 2: Create a minimal runtime image
+# Stage 2: Minimal runtime image
 FROM alpine:latest
 
 RUN apk --no-cache add ca-certificates
 
 WORKDIR /root/
-
 COPY --from=builder /app/inventory-api .
-RUN chmod +x inventory-api     # Ensure it's executable
-RUN ls -l                      # Debug: confirm binary is here
-
+RUN chmod +x inventory-api
 EXPOSE 8080
 
 CMD ["./inventory-api"]
